@@ -32,10 +32,8 @@ def digits2word(digits):
 
 	for i in range(out_loop_num):
 		digitslice = digits[3*i:3*i+3]
-		skip_next = False
 		for j, num in enumerate(digitslice):
-			#exit out since skip_next only true when only one loop left
-			if skip_next or num == 0:
+			if num == 0:
 				continue 
 
 			if j == 0:
@@ -45,7 +43,6 @@ def digits2word(digits):
 			elif j == 1: #currently in the 10s place
 				#prefix
 				if (digitslice[j]*10 + digitslice[j+1]) == 10:
-					skip_next = True #since also accounted for the next j + 1 index
 					prefix = "ten"
 				elif num in weird_conv: #part of group of prefixes that change: 2, 3, 5
 					prefix = weird_conv[num]
@@ -53,7 +50,7 @@ def digits2word(digits):
 					prefix = normal_base[num]
 				
 				#sufix teen of ty
-				if not skip_next: #10 allocated
+				if digitslice[j+1]: #if digitslice == 0 then current num is 10
 					if num == 1:
 						sufix = "teen"
 					else:
@@ -70,7 +67,7 @@ def digits2word(digits):
 		output_text += " " + modifier
 	return output_text
 
-main_output(234_223_324_234_120_644_236_153_345_654_999_424)
+main_output(110_710)
 
 #Ivan
 # num2wrd = {1: 'One', 2: 'Two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 
