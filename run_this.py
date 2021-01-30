@@ -56,7 +56,6 @@ def digits2word(num):
 		output_text += " " + super_sufix[out_loop_num -1 - i]
 	return output_text
 
-main_output(983723)
 if len(sys.argv) > 1 and len(sys.argv) < 3:
  	main_output(int(sys.argv[1]))
 else:
