@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import math
 import sys
 
 def main_output(num):
@@ -9,6 +8,9 @@ def main_output(num):
 		palabra = digits2word(num)
 		format_output(num, palabra)
 		return palabra
+
+def format_output(og_num, digit_word):
+	print(og_num, "=>", digit_word)
 
 def digits2word(num):
 	teens_conv =  {0: "ten", 1: "eleven", 2: "twelve", 3: "thirteen", 4: "fourteen",
@@ -24,7 +26,7 @@ def digits2word(num):
 				   "Octodecillion", "Novemdecillion", "Vigintillion"]
 
 	digits = list(map(lambda x: int(x), str(num))) #convert to a list of digits
-	if len(digits) % 3:
+	if len(digits) % 3: #ensure length of digits is a multiple of 3
 		digits = [0]*(3 - len(digits)%3)+digits #ensure block of 3
 	if len(digits) > len(super_sufix)*3:
 		print("Bro, please use scientific notation.")
@@ -54,11 +56,8 @@ def digits2word(num):
 		output_text += " " + super_sufix[out_loop_num -1 - i]
 	return output_text
 
-def format_output(og_num, digit_word):
-	print(og_num, "=>", digit_word)
-
-main_output(9899999999999999)
-# if len(sys.argv) > 1 and len(sys.argv) < 3:
-# 	main_output(int(sys.argv[1]))
-# else:
-# 	main_output(int(input("Please provide a number: ")))
+main_output(983723)
+if len(sys.argv) > 1 and len(sys.argv) < 3:
+ 	main_output(int(sys.argv[1]))
+else:
+	main_output(int(input("Please provide a number: ")))
